@@ -1,0 +1,48 @@
+---
+metadata:
+  title: |
+    Test1
+---
+modules:
+  - docassemble.base.core
+  - docassemble.base.util
+---
+objects:
+  - party1: Individual
+  - party2: Organization
+---
+comment: Start of interview
+mandatory: True
+question: What kind of agreement do you want?
+fields:
+  - Type: agreement_type
+---
+question: What is the date of the agreement?
+fields:
+  - Date: agreement_date
+    datatype: date
+---
+question: Who is the first party?
+fields:
+  - First Name: party1.name.first
+  - Middle Name: party1.name.middle
+    required: False
+  - Last Name: party1.name.last
+---
+question: Who is the second party?
+fields:
+  - Legal Name: party2.name.text  
+---
+question: Should the agreement have an entire agreement clause?
+yesno: entire_agreement
+mandatory: True
+---
+question: Your agreemnet is ready.
+attachment:
+  - name: Agreement
+    filename: ${agreement_type}
+    docx template file: Test1.docx
+buttons:
+  - Exit: exit
+mandatory: True
+---
